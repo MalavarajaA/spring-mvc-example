@@ -90,7 +90,7 @@ public class PersonController {
 	@RequestMapping(value="/loadCountry",method=RequestMethod.GET)
 	public ModelAndView loadCountry(Model model,HttpServletRequest request){
 		
-		List<Country> countrys = new ArrayList<Country>();
+		/*List<Country> countrys = new ArrayList<Country>();
 		Country country1 = new Country();
 		country1.setCode("IND");country1.setName("INDIA");
 		countrys.add(country1);
@@ -99,7 +99,9 @@ public class PersonController {
 		countrys.add(country2);
 		Country country3 = new Country();
 		country3.setCode("USA");country3.setName("AMERICA");
-		countrys.add(country3);
+		countrys.add(country3);*/
+		
+		List<Country> countrys = personService.readCountries();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("HomePage");
 		model.addAttribute("countrys", countrys);

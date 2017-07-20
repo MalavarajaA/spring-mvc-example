@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.mvc.hibernate.dao.PersonDAO;
+import com.spring.mvc.hibernate.model.Country;
 import com.spring.mvc.hibernate.model.Person;
 
 @Service
@@ -53,6 +54,13 @@ public class PersonServiceImpl implements PersonService {
 	@Transactional
 	public boolean isPersonExist(String name){
 		return this.personDAO.isPersonExist(name);
+	}
+
+	@Override
+	@Transactional
+	public List<Country> readCountries() {
+		// TODO Auto-generated method stub
+		return this.personDAO.readCountries();
 	}
 
 }

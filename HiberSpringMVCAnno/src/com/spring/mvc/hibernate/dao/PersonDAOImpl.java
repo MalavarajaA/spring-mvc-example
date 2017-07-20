@@ -5,7 +5,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.mvc.hibernate.model.Country;
 import com.spring.mvc.hibernate.model.Person;
 
 @Repository
@@ -57,6 +59,14 @@ public class PersonDAOImpl implements PersonDAO {
 		
 		return persons.size() == 0 ? true : false;
 		
+	}
+
+	@Override
+	public List<Country> readCountries() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		List<Country> countrys = session.createQuery("from Country").list();
+		return countrys;
 	}
 
 }
