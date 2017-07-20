@@ -4,13 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.mvc.hibernate.model.Country;
 import com.spring.mvc.hibernate.model.Person;
 import com.spring.mvc.hibernate.service.PersonService;
 
@@ -80,5 +85,24 @@ public class PersonController {
 			model.addAttribute("persons", persons);
 		}
 		return new ModelAndView();
+	}
+	
+	@RequestMapping(value="/loadCountry",method=RequestMethod.GET)
+	public ModelAndView loadCountry(Model model,HttpServletRequest request){
+		
+		List<Country> countrys = new ArrayList<Country>();
+		Country country1 = new Country();
+		country1.setCode("IND");country1.setName("INDIA");
+		countrys.add(country1);
+		Country country2 = new Country();
+		country2.setCode("AUS");country2.setName("AUSTRALIA");
+		countrys.add(country2);
+		Country country3 = new Country();
+		country3.setCode("USA");country3.setName("AMERICA");
+		countrys.add(country3);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("HomePage");
+		model.addAttribute("countrys", countrys);
+		return mv;
 	}
 }
